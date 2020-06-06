@@ -37,7 +37,7 @@ An iOS/Android pure javascript react-native component that renders your HTML int
 
 ## Install
 
-`npm install react-native-render-html --save` or `yarn add react-native-render-html`
+`npm install react-native-render-html2 --save` or `yarn add react-native-render-html2`
 
 **⚠️ Starting with version `4.2.0`, `react-native-webview` is now a peer dependency. As a result, you need to install it yourself.** Please follow [the plugin's instructions](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
 
