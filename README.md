@@ -1,4 +1,4 @@
-# react-native-render-html2
+# react-native-render-html-ac
 
 An iOS/Android pure javascript react-native component that renders your HTML into 100% native views. It's made to be extremely customizable and easy to use and aims at being able to render anything you throw at it.
 
@@ -39,7 +39,7 @@ An iOS/Android pure javascript react-native component that renders your HTML int
 
 ## Install
 
-`npm install react-native-render-html2 --save` or `yarn add react-native-render-html2`
+`npm install react-native-render-html-ac --save` or `yarn add react-native-render-html-ac`
 
 **⚠️ Starting with version `4.2.0`, `react-native-webview` is now a peer dependency. As a result, you need to install it yourself.** Please follow [the plugin's instructions](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
 
@@ -48,7 +48,7 @@ An iOS/Android pure javascript react-native component that renders your HTML int
 ```javascript
 import React, { Component } from 'react';
 import { ScrollView, Dimensions } from 'react-native';
-import HTML from 'react-native-render-html';
+import HTML from 'react-native-render-html-ac';
 
 const htmlContent = `
     <h1>This HTML snippet is now rendered with native components !</h1>
