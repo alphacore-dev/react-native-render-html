@@ -1,8 +1,10 @@
-# react-native-render-html
+# react-native-render-html2
 
 An iOS/Android pure javascript react-native component that renders your HTML into 100% native views. It's made to be extremely customizable and easy to use and aims at being able to render anything you throw at it.
 
 > Based on the original work of [Thomas Beverley](https://github.com/Thomas101), props to him.
+
+> Fork of [react-native-render-html](https://github.com/archriss/react-native-render-html)
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 [![npm](https://img.shields.io/npm/v/react-native-render-html.svg?style=flat-square)](https://www.npmjs.com/package/react-native-render-html)
