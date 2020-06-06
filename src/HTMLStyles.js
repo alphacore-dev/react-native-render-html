@@ -171,7 +171,13 @@ function cssToRNStyle (css, styleset, { emSize, ptSize, ignoredStyles, allowedSt
             return [
                 key
                     .split('-')
-                    .map((item, index) => index === 0 ? item : item[0].toUpperCase() + item.substr(1))
+                    .map((item, index) => {
+                        if (index === 0 || item == '') {
+                            return item;
+                        } else {
+                            return item[0].toUpperCase() + item.substr(1);
+                        }
+                    })
                     .join(''),
                 value
             ];
