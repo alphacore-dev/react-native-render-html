@@ -89,9 +89,64 @@ export function computeTextStyles (element, passProps) {
         });
     });
 
+    fixFontWeigth(finalStyle, parentStyles);
     // Finally, try to add the baseFontStyle values to add pontentially missing
     // styles to each text node
     return { ...passProps.baseFontStyle, ...finalStyle };
+}
+
+function fixFontWeigth(finalStyle, parentStyles) {
+    if (finalStyle['fontWeight'] == 'bolder') {
+        let fontWeight = '';
+        parentStyles.forEach((styles) => {
+            if (styles['fontWeight']) {
+                if (!isNaN(Number(styles['fontWeight'])) || styles['fontWeight'] == 'bold' ||
+                    styles['fontWeight'] == 'normal') {
+                    fontWeight = styles['fontWeight'];
+                }
+            }
+
+        });
+
+        if (fontWeight == '' || fontWeight == 'bold' || fontWeight == 'normal') {
+            fontWeight = 'bold';
+        } else {
+            const fw = Number(fontWeight);
+            if (fw < 400) {
+                fontWeight = '400';
+            } else if (fw < 600) {
+                fontWeight = '700'
+            } else {
+                fontWeight = '900'
+            }
+        }
+        finalStyle['fontWeight'] = fontWeight;
+    }
+    if (finalStyle['backgroundColor'] && finalStyle['backgroundColor'].indexOf('var(') === 0) {
+        delete finalStyle['backgroundColor'];
+    }
+}
+
+export function removeAmbiguousStyles(styles) {
+    if (Array.isArray(styles)) {
+        styles.forEach(s => {
+            clearStyleObj(s);
+        })
+    } else {
+        clearStyleObj(styles);
+    }
+    return styles;
+}
+
+function clearStyleObj(s) {
+    Object.keys(s).forEach(styleKey => {
+        // in case where it was used - no sense
+        if (styleKey == 'fontWeight' && s[styleKey] == 'bolder') {
+            delete s[styleKey];
+        } else if(styleKey == 'backgroundColor' && s[styleKey].indexOf('var(') === 0) {
+            delete s[styleKey]
+        }
+    })
 }
 
 function _recursivelyComputeParentTextStyles (element, passProps, styles = []) {

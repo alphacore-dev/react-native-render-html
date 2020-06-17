@@ -1,7 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, ViewPropTypes, ActivityIndicator, Dimensions } from 'react-native';
-import { cssStringToRNStyle, _getElementClassStyles, cssStringToObject, cssObjectToString, computeTextStyles } from './HTMLStyles';
+import {
+    cssStringToRNStyle,
+    _getElementClassStyles,
+    cssStringToObject,
+    cssObjectToString,
+    computeTextStyles,
+    removeAmbiguousStyles
+} from './HTMLStyles';
 import {
     BLOCK_TAGS,
     TEXT_TAGS,
@@ -464,13 +471,15 @@ export default class HTML extends PureComponent {
                 </Text> :
                 false;
 
-            const style = [
+            const compStyle = [
                 (!tagsStyles || !tagsStyles[tagName]) ? (Wrapper === Text ? this.defaultTextStyles : this.defaultBlockStyles)[tagName] : undefined,
                 tagsStyles ? tagsStyles[tagName] : undefined,
                 classStyles,
                 convertedCSSStyles
             ]
             .filter((s) => s !== undefined);
+            const style = removeAmbiguousStyles(compStyle);
+
 
             const renderersProps = {};
             if (Wrapper === Text) {
